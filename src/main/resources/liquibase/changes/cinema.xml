@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="litvinov-1" author="litvinov.d">
+        <sql>
+            create table address
+            (
+                id           serial primary key,
+                country      varchar(20) not null,
+                city         varchar(20) not null,
+                street       varchar(20) not null,
+                house_number integer     not null,
+                constraint UC_country_city_street_house_number unique (country, city, street, house_number)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="litvinov-2" author="litvinov.d">
+        <sql>
+            create table cinema
+            (
+                id             serial primary key,
+                name           varchar(20) not null,
+                address_id     integer     not null,
+                number_of_hall integer     not null,
+                parking        boolean     not null,
+                cafe           boolean     not null,
+                constraint UC_name unique (name),
+                constraint fk_address foreign key (address_id) references address (id)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="litvinov-3" author="litvinov.d">
+        <sql>
+            create table hall
+            (
+                id                serial primary key,
+                cinema_id         integer not null,
+                three_D           boolean not null,
+                dolby_atmos_sound boolean not null,
+                number_of_seats   integer not null,
+                number_of_person  integer not null,
+                deluxe            boolean not null,
+                constraint fk_cinema foreign key (cinema_id) references cinema (id)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="litvinov-4" author="litvinov.d">
+        <sql>
+            create table armchair_type
+            (
+                id            serial primary key,
+                armchair_type varchar(20),
+                constraint UC_armchair_type unique (armchair_type)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="litvinov-5" author="litvinov.d">
+        <sql>
+            create table place
+            (
+                id               serial primary key,
+                hall_id          integer not null,
+                armchair_type_id integer not null,
+                row              integer not null,
+                place            integer not null,
+                constraint UC_row_place unique (row, place),
+                constraint fk_hall foreign key (hall_id) references hall (id),
+                constraint fk_armchair_type foreign key (armchair_type_id) references armchair_type (id)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="litvinov-6" author="litvinov.d">
+        <sql>
+            create table schedule
+            (
+                id         serial primary key,
+                hall_id    integer             not null,
+                movie_id   integer             not null,
+                show_date  timestamp with time zone default current_date,
+                start_time time with time zone not null,
+                end_time   time with time zone not null,
+                constraint fk_hall foreign key (hall_id) references hall (id)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="litvinov-6.1" author="litvinov.d">
+        <sql>
+            alter table schedule
+            drop
+            constraint fk_hall,
+            drop
+            column hall_id;
+        </sql>
+    </changeSet>
+
+    <changeSet id="litvinov-7" author="litvinov.d">
+        <sql>
+            create table halls_schedules
+            (
+                hall_id     integer not null,
+                schedule_id integer not null,
+                constraint fk_hall foreign key (hall_id) references hall (id),
+                constraint fk_schedule foreign key (schedule_id) references schedule (id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>
+
