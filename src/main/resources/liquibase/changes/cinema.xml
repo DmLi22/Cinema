@@ -103,6 +103,20 @@
         </sql>
     </changeSet>
 
+    <changeSet id="litvinov-6.2" author="litvinov.d">
+        <sql>
+            alter table schedule
+            drop
+            column show_date,
+            drop
+            column start_time,
+            drop
+            column end_time,
+            add column start_date_time timestamp with time zone default current_date,
+            add column end_date_time timestamp with time zone default current_date;
+        </sql>
+    </changeSet>
+
     <changeSet id="litvinov-7" author="litvinov.d">
         <sql>
             create table halls_schedules
