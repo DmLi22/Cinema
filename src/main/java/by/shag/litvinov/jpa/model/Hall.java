@@ -33,6 +33,6 @@ public class Hall {
     @Column(nullable = false)
     private Boolean deluxe;
 
-    @OneToMany(mappedBy = "hall")
-    Set<HallsSchedules> hallsSchedules;
+//    @OneToMany(mappedBy = "hall")
+//    Set<HallsSchedules> hallsSchedules;
 }

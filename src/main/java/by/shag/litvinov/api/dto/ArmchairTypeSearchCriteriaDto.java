@@ -10,7 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ArmchairTypeSearchCriteriaDto {
 
-    private Integer id;
-
     private ArmchairTypeEnum armchairType;
 }

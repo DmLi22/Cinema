@@ -5,12 +5,12 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "halls_schedules")   //надо ли это?
+@Table(name = "halls_schedules")
 @Data
 public class HallsSchedules {
 
     @EmbeddedId
-    private HallsSchedulesKey id;
+    private HallsSchedulesKey id;   // ? baeldung.com
 
     @ManyToOne
     @MapsId("hallId")

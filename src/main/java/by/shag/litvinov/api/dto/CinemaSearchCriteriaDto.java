@@ -9,11 +9,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CinemaSearchCriteriaDto {
 
-    private Integer id;
-
     private String name;
 
     private Integer addressId;
+
+    private String country;
+
+    private String city;
+
+    private String street;
 
     private Integer numberOfHall;
 

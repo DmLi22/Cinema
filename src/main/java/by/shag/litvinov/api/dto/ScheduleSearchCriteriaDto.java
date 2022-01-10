@@ -11,11 +11,19 @@ import java.time.Instant;
 @NoArgsConstructor
 public class ScheduleSearchCriteriaDto {
 
-    private Integer id;
-
     private Integer movieId;
+
+    private String movieName;
 
     private Instant startDateTime;
 
+    private Instant minStartDateTime;
+
+    private Instant maxStartDateTime;
+
     private Instant endDateTime;
+
+    private Instant minEndDateTime;
+
+    private Instant maxEndDateTime;
 }

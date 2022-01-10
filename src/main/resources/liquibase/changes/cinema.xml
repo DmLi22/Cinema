@@ -35,6 +35,15 @@
         </sql>
     </changeSet>
 
+    <changeSet id="litvinov-2.1" author="litvinov.d">
+        <sql>
+            alter table cinema
+            drop
+            constraint UC_name,
+            add constraint UC_name_address_id unique(name, address_id);
+        </sql>
+    </changeSet>
+
     <changeSet id="litvinov-3" author="litvinov.d">
         <sql>
             create table hall

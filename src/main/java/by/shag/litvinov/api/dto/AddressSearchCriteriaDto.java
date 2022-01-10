@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AddressSearchCriteriaDto {
 
-    private Integer id;
-
     private String country;
 
     private String city;

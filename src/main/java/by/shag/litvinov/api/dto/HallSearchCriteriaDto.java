@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class HallSearchCriteriaDto {
 
-    private Integer id;
-
     private Integer cinemaId;
+
+    private String cinemaName;
 
     private Boolean three3D;
 
@@ -19,7 +19,15 @@ public class HallSearchCriteriaDto {
 
     private Integer numberOfSeats;
 
+    private Integer minNumberOfSeats;
+
+    private Integer maxNumberOfSeats;
+
     private Integer numberOfPerson;
+
+    private Integer minNumberOfPerson;
+
+    private Integer maxNumberOfPerson;
 
     private Boolean deluxe;
 }
