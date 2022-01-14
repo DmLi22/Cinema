@@ -15,7 +15,6 @@ public interface AddressMapper {
     @Mapping(target = "id", ignore = true)
     Address mapToModel(AddressDto addressDto);
 
-    @InheritInverseConfiguration
     AddressDto mapToDto(Address address);
 
     List<Address> mapListToModel(List<AddressDto> addressDtoList);

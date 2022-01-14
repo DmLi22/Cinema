@@ -14,5 +14,8 @@ public class ArmchairType {
     private Integer id;
 
     @Column(name = "armchair_type", nullable = false)
-    private ArmchairTypeEnum armchairType;
+    private String armchairType;
+
+    @Column(nullable = false)
+    private String description;
 }

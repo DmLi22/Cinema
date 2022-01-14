@@ -5,7 +5,6 @@ import by.shag.litvinov.api.dto.ArmchairTypeSearchCriteriaDto;
 import by.shag.litvinov.exception.EntityDuplicationException;
 import by.shag.litvinov.exception.EntityNotFoundException;
 import by.shag.litvinov.jpa.model.ArmchairType;
-import by.shag.litvinov.jpa.model.ArmchairTypeEnum;
 import by.shag.litvinov.jpa.repository.ArmchairTypeRepository;
 import by.shag.litvinov.mapping.ArmchairTypeMapper;
 import lombok.RequiredArgsConstructor;
@@ -44,17 +43,17 @@ public class ArmchairTypeService {
     public List<ArmchairTypeDto> findAll(ArmchairTypeSearchCriteriaDto search) {
         return mapper.mapListToDto(repository.findAll(findBySearchCriteria(search)));
     }
-
-    public List<ArmchairTypeDto> findByArmchairTypeStartingWith(ArmchairTypeEnum armchairType) {
-        List<ArmchairType> modelList = repository.findByArmchairTypeStartingWith(armchairType);
+    //если не работает закоментать игноркейс !!!
+    public List<ArmchairTypeDto> findByArmchairTypeStartingWithIgnoreCase(String armchairType) {
+        List<ArmchairType> modelList = repository.findByArmchairTypeStartingWithIgnoreCase(armchairType);
         return mapper.mapListToDto(modelList);
     }
 
     public ArmchairTypeDto update(Integer id, ArmchairTypeDto dto) {
         validateAlreadyExists(id, dto);
         ArmchairType model = mapper.mapToModel(dto).setId(id);
-        ArmchairType saved = repository.save(model);
-        return mapper.mapToDto(saved);
+        ArmchairType updated = repository.save(model);
+        return mapper.mapToDto(updated);
     }
 
     public void deleteById(Integer id) {
@@ -66,9 +65,10 @@ public class ArmchairTypeService {
     }
 
     private void validateAlreadyExists(Integer id, ArmchairTypeDto dto) {
-        Optional<ArmchairType> check = repository.findByArmchairType(dto.getArmchairType());
-        if (check.isPresent() && !Objects.equals(check.get().getId(), id)) {
-            throw new EntityDuplicationException("ArmchairType(" + dto.getArmchairType() + ") already exist");
+        Optional<ArmchairType> model = repository.findByArmchairType(dto.getArmchairType());
+        if (model.isPresent() && !Objects.equals(model.get().getId(), id)) {
+            throw new EntityDuplicationException("Exception: The record with armchair type "
+                                                 + dto.getArmchairType() + " already exist");
         }
     }
 }

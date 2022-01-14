@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -16,8 +17,7 @@ public class Schedule {
     private Integer id;
 
     @Column(name = "movie_id")
-    //private Movie movie;      //раскоментать
-    private Integer movieId;    //закоментать
+    private Integer movieId;
 
     @Column(name = "start_date_time")
     private Instant startDateTime;
@@ -25,6 +25,6 @@ public class Schedule {
     @Column(name = "end_date_time")
     private Instant endDateTime;
 
-//    @OneToMany(mappedBy = "schedule")
-//    Set<HallsSchedules> hallsSchedules;
+    @ManyToMany(mappedBy = "schedules")
+    private Set<Hall> halls = new HashSet<>();
 }

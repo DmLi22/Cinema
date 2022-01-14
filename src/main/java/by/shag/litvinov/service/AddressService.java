@@ -63,9 +63,9 @@ public class AddressService {
         Optional<Address> model = repository.findByCountryAndCityAndStreetAndHouseNumber(dto.getCountry(),
                 dto.getCity(), dto.getStreet(), dto.getHouseNumber());
         if (model.isPresent() && !model.get().getId().equals(id)) {
-            throw new EntityDuplicationException("Exception The record with country " + dto.getCountry() +
-                    ", city" + dto.getCity() + ", street" + dto.getStreet() +
-                    ", house number()" + dto.getHouseNumber() + "already exists");
+            throw new EntityDuplicationException("Exception: The record with country " + dto.getCountry() +
+                    ", city " + dto.getCity() + ", street " + dto.getStreet() +
+                    ", house number() " + dto.getHouseNumber() + " already exists");
         }
     }
 }

@@ -2,7 +2,6 @@ package by.shag.litvinov.mapping;
 
 import by.shag.litvinov.api.dto.CinemaDto;
 import by.shag.litvinov.jpa.model.Cinema;
-import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
@@ -16,7 +15,6 @@ public interface CinemaMapper {
     @Mapping(target = "address", ignore = true)
     Cinema mapToModel(CinemaDto cinemaDto);
 
-    @InheritInverseConfiguration
     @Mapping(target = "addressId", source = "address.id")
     CinemaDto mapToDto(Cinema cinema);
 

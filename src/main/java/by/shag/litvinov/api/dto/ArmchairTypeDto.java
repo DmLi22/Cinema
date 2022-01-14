@@ -1,6 +1,5 @@
 package by.shag.litvinov.api.dto;
 
-import by.shag.litvinov.jpa.model.ArmchairTypeEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -14,7 +13,11 @@ public class ArmchairTypeDto {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Integer id;
 
-    @ApiModelProperty(value = "Armchair type", example = "Seat", required = true, position = 2)
+    @ApiModelProperty(value = "Armchair type", example = "Chair", required = true, position = 2)
     @NotBlank(message = "Armchair type must be not null and not empty")
-    private ArmchairTypeEnum armchairType;
+    private String armchairType;
+
+    @ApiModelProperty(value = "Description", example = "Standard chair", required = true, position = 3)
+    @NotBlank(message = "Description must be not null and not empty")
+    private String description;
 }

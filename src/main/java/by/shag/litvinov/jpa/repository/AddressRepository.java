@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface AddressRepository extends JpaRepository<Address, Integer>, JpaSpecificationExecutor<Address> {
 
     Optional<Address> findByCountryAndCityAndStreetAndHouseNumber(String country, String city,
-                                                                          String street, Integer houseNumber);
+                                                                  String street,  Integer houseNumber);
 
 
 }

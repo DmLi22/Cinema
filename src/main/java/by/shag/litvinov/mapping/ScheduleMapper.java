@@ -16,10 +16,12 @@ public interface ScheduleMapper {
     //@Mapping(target = "movie", ignore = true)
     @Mapping(target = "startDateTime", expression = "java(Instant.now())")
     @Mapping(target = "endDateTime", expression = "java(Instant.now())")
+//    @Mapping(target = "halls", source = "hallDtoSet")
     Schedule mapToModel(ScheduleDto scheduleDto);
 
 
     //@Mapping(target = "movieId", source = "movie.id")
+//    @Mapping(target = "hallDtoSet", source = "halls")  //this
     ScheduleDto mapToDto(Schedule schedule);
 
     List<Schedule> mapListToModel(List<ScheduleDto> scheduleDtoList);

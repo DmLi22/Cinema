@@ -1,7 +1,6 @@
 package by.shag.litvinov.jpa.specification;
 
 import by.shag.litvinov.api.dto.PlaceSearchCriteriaDto;
-import by.shag.litvinov.jpa.model.ArmchairTypeEnum;
 import by.shag.litvinov.jpa.model.Place;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -15,7 +14,7 @@ public class PlaceSpecificationUtils {
         return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("armchairTypeId"), armchairTypeId);
     }
 
-    public static Specification<Place> likeArmchairType(ArmchairTypeEnum armchairType) {
+    public static Specification<Place> likeArmchairType(String armchairType) {
         return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(root.get("armchairType").get("armchairType"), "%" + armchairType + "%");
     }
 

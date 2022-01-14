@@ -1,6 +1,5 @@
 package by.shag.litvinov.jpa.repository;
 
-import by.shag.litvinov.jpa.model.Address;
 import by.shag.litvinov.jpa.model.Cinema;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

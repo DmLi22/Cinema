@@ -15,7 +15,6 @@ public interface ArmchairTypeMapper {
     @Mapping(target = "id", ignore = true)
     ArmchairType mapToModel(ArmchairTypeDto armchairTypeDto);
 
-    @InheritInverseConfiguration
     ArmchairTypeDto mapToDto(ArmchairType armchairTypeJpa);
 
     List<ArmchairType> mapListToModel(List<ArmchairTypeDto> armchairTypeDtoList);

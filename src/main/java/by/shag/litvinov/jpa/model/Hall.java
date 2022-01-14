@@ -3,6 +3,7 @@ package by.shag.litvinov.jpa.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -33,6 +34,13 @@ public class Hall {
     @Column(nullable = false)
     private Boolean deluxe;
 
-//    @OneToMany(mappedBy = "hall")
-//    Set<HallsSchedules> hallsSchedules;
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "halls_schedules",
+            joinColumns = @JoinColumn(name = "hall_id"),
+            inverseJoinColumns = @JoinColumn(name = "schedule_id")
+    )
+    private Set<Schedule> schedules = new HashSet<>();
 }

@@ -1,5 +1,6 @@
 package by.shag.litvinov.api.dto;
 
+import by.shag.litvinov.jpa.model.Hall;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -8,6 +9,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 public class ScheduleDto {
@@ -30,4 +33,7 @@ public class ScheduleDto {
     @NotNull(message = "Show end date and time must be not null")
     @Past(message = "Show end date and time cannot be later than current date and time")
     private Instant endDateTime;
+
+//    @ApiModelProperty итд не забуд
+    private Set<Hall/*Dto*/> halls/*DtoSet*/ = new HashSet<>();
 }

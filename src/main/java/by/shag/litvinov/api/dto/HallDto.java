@@ -1,12 +1,15 @@
 package by.shag.litvinov.api.dto;
 
 import by.shag.litvinov.api.validation.NotFoundSuchCinema;
+import by.shag.litvinov.jpa.model.Schedule;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 public class HallDto {
@@ -40,4 +43,7 @@ public class HallDto {
     @ApiModelProperty(value = "Deluxe", example = "true", required = true, position = 7)
     @NotNull(message = "Deluxe must be not null")
     private Boolean deluxe;
+
+    // @ApiModelProperty итд не забудь!
+    private Set<ScheduleDto> schedules/*DtoSet*/ = new HashSet<>();
 }
