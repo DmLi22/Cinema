@@ -45,5 +45,5 @@ public class HallDto {
     private Boolean deluxe;
 
     // @ApiModelProperty итд не забудь!
-    private Set<ScheduleDto> schedules/*DtoSet*/ = new HashSet<>();
+//    private Set<ScheduleDto> schedules/*DtoSet*/ = new HashSet<>();
 }

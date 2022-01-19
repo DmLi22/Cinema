@@ -11,7 +11,7 @@ public class CinemaSpecificationUtils {
     }
 
     public static Specification<Cinema> equalsAddressId(Integer addressId) {
-        return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("addressId"), addressId);
+        return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("address").get("id"), addressId);
     }
 
     public static Specification<Cinema> likeCountry(String country) {

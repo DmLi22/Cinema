@@ -35,5 +35,7 @@ public class ScheduleDto {
     private Instant endDateTime;
 
 //    @ApiModelProperty итд не забуд
-    private Set<Hall/*Dto*/> halls/*DtoSet*/ = new HashSet<>();
+//private Set<Hall> halls = new HashSet<>();
+    @ApiModelProperty(value = "Halls id", dataType = "Set", example = "[1]", required = true, position = 5)
+    private Set<Integer> halls;
 }

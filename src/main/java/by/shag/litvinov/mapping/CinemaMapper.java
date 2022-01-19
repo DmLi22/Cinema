@@ -8,11 +8,12 @@ import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR,
+        uses = AddressMapper.class)
 public interface CinemaMapper {
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "address", ignore = true)
+    @Mapping(target = "address.id", source = "addressId")
     Cinema mapToModel(CinemaDto cinemaDto);
 
     @Mapping(target = "addressId", source = "address.id")

@@ -8,16 +8,15 @@ import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR, uses = ScheduleMapper.class)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR,
+        uses = CinemaMapper.class)
 public interface HallMapper {
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "cinema", ignore = true)
-//    @Mapping(target = "schedules", source = "schedules")
+    @Mapping(target = "cinema.id", source = "cinemaId")
     Hall mapToModel(HallDto hallDto);
 
     @Mapping(target = "cinemaId", source = "cinema.id")
-//    @Mapping(target = "schedules", source = "schedules")
     HallDto mapToDto(Hall hall);
 
     List<Hall> mapListToModel(List<HallDto> hallDtoList);

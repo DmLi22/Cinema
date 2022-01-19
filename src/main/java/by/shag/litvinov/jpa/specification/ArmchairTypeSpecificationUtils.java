@@ -27,7 +27,7 @@ public class ArmchairTypeSpecificationUtils {
             specification = specification.and(likeArmchairType(criteriaDto.getArmchairType()));
         }
         if (criteriaDto.getDescription() != null) {
-            specification = specification.and((likeArmchairType(criteriaDto.getArmchairType())));
+            specification = specification.and((likeDescription(criteriaDto.getDescription())));
         }
         return specification;
     }

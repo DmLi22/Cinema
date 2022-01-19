@@ -17,12 +17,20 @@ public class ScheduleSpecificationUtils {
     //    return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(root.get("movie").get("movieName"), "%" + movieName + "%");
     //}
 
+    public static Specification<Schedule> equalsStartDateTime(Instant startDateTime) {
+        return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("startDateTime"), startDateTime);
+    }
+
     public static Specification<Schedule> greaterThanMinStartDateTime(Instant minStartDateTime) {
         return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.greaterThanOrEqualTo(root.get("startDateTime"), minStartDateTime);
     }
 
     public static Specification<Schedule> lessThanMaxStartDateTime(Instant maxStartDateTime) {
         return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.lessThanOrEqualTo(root.get("startDateTime"), maxStartDateTime);
+    }
+
+    public static Specification<Schedule> equalsEndDateTime(Instant endDateTime) {
+        return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("endDateTime"), endDateTime);
     }
 
     public static Specification<Schedule> greaterThanMinEndDateTime(Instant minEndDateTime) {
@@ -48,11 +56,17 @@ public class ScheduleSpecificationUtils {
         //if (criteriaDto.getMovieName() != null) {
         //    specification = specification.and(likeMovieName(criteriaDto.getMovieName()));
         //}
+        if (criteriaDto.getStartDateTime() != null) {
+            specification = specification.and(equalsStartDateTime(criteriaDto.getStartDateTime()));
+        }
         if (criteriaDto.getMinStartDateTime() != null) {
             specification = specification.and(greaterThanMinStartDateTime(criteriaDto.getMinStartDateTime()));
         }
         if (criteriaDto.getMaxStartDateTime() != null) {
             specification = specification.and(lessThanMaxStartDateTime(criteriaDto.getMaxStartDateTime()));
+        }
+        if (criteriaDto.getEndDateTime() != null) {
+            specification = specification.and(equalsEndDateTime(criteriaDto.getEndDateTime()));
         }
         if (criteriaDto.getMinEndDateTime() != null) {
             specification = specification.and(greaterThanMinEndDateTime(criteriaDto.getMinEndDateTime()));

@@ -12,8 +12,8 @@ import java.util.List;
 public interface PlaceMapper {
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "hall", ignore = true)
-    @Mapping(target = "armchairType", ignore = true)
+    @Mapping(target = "hall.id", source = "hallId")
+    @Mapping(target = "armchairType.id", source = "armchairTypeId")
     Place mapToModel(PlaceDto placeDto);
 
     @Mapping(target = "hallId", source = "hall.id")

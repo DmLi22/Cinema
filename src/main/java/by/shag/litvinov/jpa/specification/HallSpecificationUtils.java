@@ -7,7 +7,7 @@ import org.springframework.data.jpa.domain.Specification;
 public class HallSpecificationUtils {
 
     public static Specification<Hall> equalsCinemaId(Integer cinemaId) {
-        return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("cinemaId"), cinemaId);
+        return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("cinema").get("id"), cinemaId);
     }
 
     public static Specification<Hall> likeCinemaName(String cinemaName) {
@@ -22,12 +22,20 @@ public class HallSpecificationUtils {
         return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("dolbyAtmosSound"), dolbyAtmosSound);
     }
 
+    public static Specification<Hall> equalsNumberOfSeats(Integer numberOfSeats) {
+        return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("numberOfSeats"), numberOfSeats);
+    }
+
     public static Specification<Hall> greaterThanMinNumberOfSeats(Integer minNumberOfSeats) {
         return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.greaterThanOrEqualTo(root.get("numberOfSeats"), minNumberOfSeats);
     }
 
     public static Specification<Hall> lessThanMaxNumberOfSeats(Integer maxNumberOfSeats) {
         return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.lessThanOrEqualTo(root.get("numberOfSeats"), maxNumberOfSeats);
+    }
+
+    public static Specification<Hall> equalsNumberOfPerson(Integer numberOfPerson) {
+        return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("numberOfPerson"), numberOfPerson);
     }
 
     public static Specification<Hall> greaterThanMinNumberOfPerson(Integer minNumberOfPerson) {
@@ -63,11 +71,17 @@ public class HallSpecificationUtils {
         if (criteriaDto.getDolbyAtmosSound() != null) {
             specification = specification.and(equalsDolbyAtmosSound(criteriaDto.getDolbyAtmosSound()));
         }
+        if (criteriaDto.getNumberOfSeats() != null) {
+            specification = specification.and(equalsNumberOfSeats(criteriaDto.getNumberOfSeats()));
+        }
         if (criteriaDto.getMinNumberOfSeats() != null) {
             specification = specification.and(greaterThanMinNumberOfSeats(criteriaDto.getMinNumberOfSeats()));
         }
         if (criteriaDto.getMaxNumberOfSeats() != null) {
             specification = specification.and(lessThanMaxNumberOfSeats(criteriaDto.getMaxNumberOfSeats()));
+        }
+        if (criteriaDto.getNumberOfPerson() != null) {
+            specification = specification.and(equalsNumberOfPerson(criteriaDto.getNumberOfPerson()));
         }
         if (criteriaDto.getMinNumberOfPerson() != null) {
             specification = specification.and(greaterThanMinNumberOfPerson(criteriaDto.getMinNumberOfPerson()));

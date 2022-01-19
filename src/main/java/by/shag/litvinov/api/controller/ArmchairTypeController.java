@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/armchairs-types")
-@Api(tags = "CRUD Armchair Controller")
+@Api(tags = "CRUD Armchair type Controller")
 public class ArmchairTypeController {
 
     @Autowired

@@ -25,6 +25,14 @@ public class Schedule {
     @Column(name = "end_date_time")
     private Instant endDateTime;
 
-    @ManyToMany(mappedBy = "schedules")
-    private Set<Hall> halls = new HashSet<>();
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "halls_schedules",
+    joinColumns = @JoinColumn(name = "schedule_id"),
+            inverseJoinColumns = @JoinColumn(name = "hall_id")
+    )
+    private Set<Hall> halls; // = new HashSet<>();
 }

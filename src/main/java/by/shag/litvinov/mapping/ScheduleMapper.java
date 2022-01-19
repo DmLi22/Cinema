@@ -9,7 +9,9 @@ import org.mapstruct.ReportingPolicy;
 import java.time.Instant;
 import java.util.List;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR, imports = {Instant.class})
+@Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR,
+        uses = HallMapper.class,
+        imports = {Instant.class})
 public interface ScheduleMapper {
 
     @Mapping(target = "id", ignore = true)
@@ -17,11 +19,17 @@ public interface ScheduleMapper {
     @Mapping(target = "startDateTime", expression = "java(Instant.now())")
     @Mapping(target = "endDateTime", expression = "java(Instant.now())")
 //    @Mapping(target = "halls", source = "hallDtoSet")
+//    @Mapping(target = "schedule.id", source = "scheduleId")
+//    @Mapping(target = "halls.id", source = "hallsId")
+    @Mapping(target = "halls", ignore = true)
     Schedule mapToModel(ScheduleDto scheduleDto);
 
 
     //@Mapping(target = "movieId", source = "movie.id")
 //    @Mapping(target = "hallDtoSet", source = "halls")  //this
+//    @Mapping(target = "scheduleId", source = "schedule.id")
+//    @Mapping(target = "hallsId", source = "halls.Id")
+    @Mapping(target = "halls", ignore = true)
     ScheduleDto mapToDto(Schedule schedule);
 
     List<Schedule> mapListToModel(List<ScheduleDto> scheduleDtoList);
