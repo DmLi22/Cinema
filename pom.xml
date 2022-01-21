@@ -19,6 +19,7 @@
         <spring-test-dbunit.version>1.3.0</spring-test-dbunit.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <springfox-swagger2.version>3.0.0</springfox-swagger2.version>
+        <spring-cloud.version>2020.0.4</spring-cloud.version>
     </properties>
 
     <parent>
@@ -118,7 +119,24 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
+        <!--                            Service interactions                     -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>            <!--Service interactions-->
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
