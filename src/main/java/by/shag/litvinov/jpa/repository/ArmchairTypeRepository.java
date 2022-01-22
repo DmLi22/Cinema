@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ArmchairTypeRepository extends JpaRepository<ArmchairType, Integer>, JpaSpecificationExecutor<ArmchairType> {
-//если не работает закоментать игноркейс !!!
-    List<ArmchairType> findByArmchairTypeStartingWithIgnoreCase(String armchairType);  //не работает IgnoreCase
+
+    List<ArmchairType> findByArmchairTypeStartingWithIgnoreCase(String armchairType);
 
     Optional<ArmchairType> findByArmchairType(String armchairType);
 }

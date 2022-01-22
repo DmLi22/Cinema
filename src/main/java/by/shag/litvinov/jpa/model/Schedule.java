@@ -4,7 +4,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -27,12 +26,12 @@ public class Schedule {
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
     @JoinTable(name = "halls_schedules",
-    joinColumns = @JoinColumn(name = "schedule_id"),
+            joinColumns = @JoinColumn(name = "schedule_id"),
             inverseJoinColumns = @JoinColumn(name = "hall_id")
     )
-    private Set<Hall> halls; // = new HashSet<>();
+    private Set<Hall> halls;
 }

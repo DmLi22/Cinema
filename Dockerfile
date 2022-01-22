@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11
+FROM adoptopenjdk/openjdk14
 
 ADD target/j20-cinema-1.0-SNAPSHOT.jar /home/j20-cinema-1.0-SNAPSHOT.jar
 

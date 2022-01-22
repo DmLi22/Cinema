@@ -3,9 +3,6 @@ package by.shag.litvinov.jpa.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "hall")
@@ -34,7 +31,4 @@ public class Hall {
 
     @Column(nullable = false)
     private Boolean deluxe;
-
-//    @ManyToMany(mappedBy = "hall")
-//    private List<Schedule> schedules; //= new HashSet<>();
 }

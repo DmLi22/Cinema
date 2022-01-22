@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface ScheduleRepository extends JpaRepository<Schedule, Integer>, JpaSpecificationExecutor<Schedule> {
 
-    //List<Schedule> findByMovieNameStartingWithIgnoreCase(String movieName);    //ругается, Забираем у Жени
-
     List<Schedule> findByStartDateTimeBetween(Instant minStartDateTime, Instant maxStartDateTime);
 
     List<Schedule> findByEndDateTimeBetween(Instant minEndDateTime, Instant maxEndDateTime);

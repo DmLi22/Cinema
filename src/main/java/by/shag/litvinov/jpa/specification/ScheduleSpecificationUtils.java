@@ -12,11 +12,6 @@ public class ScheduleSpecificationUtils {
         return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("movieId"), movieId);
     }
 
-    //Связь с Movie table ???? Женя
-    //public static Specification<Schedule> likeMovieName(String movieName) {
-    //    return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(root.get("movie").get("movieName"), "%" + movieName + "%");
-    //}
-
     public static Specification<Schedule> equalsStartDateTime(Instant startDateTime) {
         return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("startDateTime"), startDateTime);
     }
@@ -53,26 +48,25 @@ public class ScheduleSpecificationUtils {
         if (criteriaDto.getMovieId() != null) {
             specification = specification.and(equalsMovieId(criteriaDto.getMovieId()));
         }
-        //if (criteriaDto.getMovieName() != null) {
-        //    specification = specification.and(likeMovieName(criteriaDto.getMovieName()));
-        //}
         if (criteriaDto.getStartDateTime() != null) {
             specification = specification.and(equalsStartDateTime(criteriaDto.getStartDateTime()));
-        }
-        if (criteriaDto.getMinStartDateTime() != null) {
-            specification = specification.and(greaterThanMinStartDateTime(criteriaDto.getMinStartDateTime()));
-        }
-        if (criteriaDto.getMaxStartDateTime() != null) {
-            specification = specification.and(lessThanMaxStartDateTime(criteriaDto.getMaxStartDateTime()));
+        } else {
+            if (criteriaDto.getMinStartDateTime() != null) {
+                specification = specification.and(greaterThanMinStartDateTime(criteriaDto.getMinStartDateTime()));
+            }
+            if (criteriaDto.getMaxStartDateTime() != null) {
+                specification = specification.and(lessThanMaxStartDateTime(criteriaDto.getMaxStartDateTime()));
+            }
         }
         if (criteriaDto.getEndDateTime() != null) {
             specification = specification.and(equalsEndDateTime(criteriaDto.getEndDateTime()));
-        }
-        if (criteriaDto.getMinEndDateTime() != null) {
-            specification = specification.and(greaterThanMinEndDateTime(criteriaDto.getMinEndDateTime()));
-        }
-        if (criteriaDto.getMaxEndDateTime() != null) {
-            specification = specification.and(lessThanMaxEndDateTime(criteriaDto.getMaxEndDateTime()));
+        } else {
+            if (criteriaDto.getMinEndDateTime() != null) {
+                specification = specification.and(greaterThanMinEndDateTime(criteriaDto.getMinEndDateTime()));
+            }
+            if (criteriaDto.getMaxEndDateTime() != null) {
+                specification = specification.and(lessThanMaxEndDateTime(criteriaDto.getMaxEndDateTime()));
+            }
         }
         return specification;
     }

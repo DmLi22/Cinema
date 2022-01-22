@@ -58,7 +58,6 @@ public class HallService {
     }
 
     public HallDto update(Integer id, HallDto dto) {
-//        validateAlreadyExists(id, dto);
         Hall model = mapper.mapToModel(dto).setId(id);
         Hall updated = repository.save(model);
         return mapper.mapToDto(updated);

@@ -60,7 +60,7 @@ public class CinemaService {
     }
 
     private void validateAlreadyExists(Integer id, CinemaDto dto) {
-        Optional<Cinema> model = repository.findByNameAndAddress_Id(dto.getName(), dto.getAddressId());
+        Optional<Cinema> model = repository.findByNameAndAddressId(dto.getName(), dto.getAddressId());
         if (model.isPresent() && !model.get().getId().equals(id)) {
             throw new EntityDuplicationException("Exception: The record with cinema " + dto.getName() +
                     " and address id" + dto.getAddressId() + "already exists");

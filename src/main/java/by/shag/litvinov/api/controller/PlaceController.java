@@ -1,6 +1,5 @@
 package by.shag.litvinov.api.controller;
 
-import by.shag.litvinov.api.dto.AddressDto;
 import by.shag.litvinov.api.dto.PlaceDto;
 import by.shag.litvinov.api.dto.PlaceSearchCriteriaDto;
 import by.shag.litvinov.service.PlaceService;

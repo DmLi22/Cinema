@@ -61,22 +61,24 @@ public class PlaceSpecificationUtils {
             specification = specification.and(likeArmchairType(criteriaDto.getArmchairType()));
         }
         if (criteriaDto.getRow() != null) {
-           specification =specification.and(equalsRow(criteriaDto.getRow()));
-        }
-        if (criteriaDto.getMinRow() != null) {
-            specification = specification.and(greaterThanMinRow(criteriaDto.getMinRow()));
-        }
-        if (criteriaDto.getMaxRow() != null) {
-            specification = specification.and(lessThanMaxRow(criteriaDto.getMaxRow()));
+            specification = specification.and(equalsRow(criteriaDto.getRow()));
+        } else {
+            if (criteriaDto.getMinRow() != null) {
+                specification = specification.and(greaterThanMinRow(criteriaDto.getMinRow()));
+            }
+            if (criteriaDto.getMaxRow() != null) {
+                specification = specification.and(lessThanMaxRow(criteriaDto.getMaxRow()));
+            }
         }
         if (criteriaDto.getPlace() != null) {
             specification = specification.and(equalsPlace(criteriaDto.getPlace()));
-        }
-        if (criteriaDto.getMinPlace() != null) {
-            specification = specification.and(greaterThanMinPlace(criteriaDto.getMinPlace()));
-        }
-        if (criteriaDto.getMaxPlace() != null) {
-            specification = specification.and(lessThanMaxPlace(criteriaDto.getMaxPlace()));
+        } else {
+            if (criteriaDto.getMinPlace() != null) {
+                specification = specification.and(greaterThanMinPlace(criteriaDto.getMinPlace()));
+            }
+            if (criteriaDto.getMaxPlace() != null) {
+                specification = specification.and(lessThanMaxPlace(criteriaDto.getMaxPlace()));
+            }
         }
         return specification;
     }

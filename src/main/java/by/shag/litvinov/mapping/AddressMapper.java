@@ -2,7 +2,6 @@ package by.shag.litvinov.mapping;
 
 import by.shag.litvinov.api.dto.AddressDto;
 import by.shag.litvinov.jpa.model.Address;
-import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;

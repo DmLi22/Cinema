@@ -43,7 +43,7 @@ public class ArmchairTypeService {
     public List<ArmchairTypeDto> findAll(ArmchairTypeSearchCriteriaDto search) {
         return mapper.mapListToDto(repository.findAll(findBySearchCriteria(search)));
     }
-    //если не работает закоментать игноркейс !!!
+
     public List<ArmchairTypeDto> findByArmchairTypeStartingWithIgnoreCase(String armchairType) {
         List<ArmchairType> modelList = repository.findByArmchairTypeStartingWithIgnoreCase(armchairType);
         return mapper.mapListToDto(modelList);

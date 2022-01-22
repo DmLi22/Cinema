@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface CinemaRepository extends JpaRepository<Cinema, Integer>, JpaSpecificationExecutor<Cinema> {
 
-    Optional<Cinema> findByNameAndAddress_Id(String name, Integer addressId);
+    Optional<Cinema> findByNameAndAddressId(String name, Integer addressId);
 }

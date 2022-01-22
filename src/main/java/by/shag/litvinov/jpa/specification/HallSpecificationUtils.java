@@ -73,21 +73,23 @@ public class HallSpecificationUtils {
         }
         if (criteriaDto.getNumberOfSeats() != null) {
             specification = specification.and(equalsNumberOfSeats(criteriaDto.getNumberOfSeats()));
-        }
-        if (criteriaDto.getMinNumberOfSeats() != null) {
-            specification = specification.and(greaterThanMinNumberOfSeats(criteriaDto.getMinNumberOfSeats()));
-        }
-        if (criteriaDto.getMaxNumberOfSeats() != null) {
-            specification = specification.and(lessThanMaxNumberOfSeats(criteriaDto.getMaxNumberOfSeats()));
+        } else {
+            if (criteriaDto.getMinNumberOfSeats() != null) {
+                specification = specification.and(greaterThanMinNumberOfSeats(criteriaDto.getMinNumberOfSeats()));
+            }
+            if (criteriaDto.getMaxNumberOfSeats() != null) {
+                specification = specification.and(lessThanMaxNumberOfSeats(criteriaDto.getMaxNumberOfSeats()));
+            }
         }
         if (criteriaDto.getNumberOfPerson() != null) {
             specification = specification.and(equalsNumberOfPerson(criteriaDto.getNumberOfPerson()));
-        }
-        if (criteriaDto.getMinNumberOfPerson() != null) {
-            specification = specification.and(greaterThanMinNumberOfPerson(criteriaDto.getMinNumberOfPerson()));
-        }
-        if (criteriaDto.getMaxNumberOfPerson() != null) {
-            specification = specification.and(lessThanMaxNumberOfPerson(criteriaDto.getMaxNumberOfPerson()));
+        } else {
+            if (criteriaDto.getMinNumberOfPerson() != null) {
+                specification = specification.and(greaterThanMinNumberOfPerson(criteriaDto.getMinNumberOfPerson()));
+            }
+            if (criteriaDto.getMaxNumberOfPerson() != null) {
+                specification = specification.and(lessThanMaxNumberOfPerson(criteriaDto.getMaxNumberOfPerson()));
+            }
         }
         if (criteriaDto.getDeluxe() != null) {
             specification = specification.and(equalsDeluxe(criteriaDto.getDeluxe()));

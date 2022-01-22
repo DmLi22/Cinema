@@ -44,7 +44,6 @@ public class PlaceService {
         return mapper.mapListToDto(repository.findAll(findBySearchCriteria(criteriaDto)));
     }
 
-    // не работает, закоментай IgnoreCase
     public List<PlaceDto> findByArmchairTypeStartingWithOrderByArmchairTypeAsc(String armchairType) {
         List<Place> placeList = repository.findByArmchairTypeStartingWithOrderByArmchairTypeAsc(armchairType);
         return mapper.mapListToDto(placeList);
